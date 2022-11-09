@@ -43,7 +43,7 @@ while (seguirComprando === true) {
     totalCompra = totalCompra + toshiba.price
     }
  */  
-    totalCompra = totalCompra + poductosArray[producto-1].price
+    totalCompra = totalCompra + productosArray[producto-1].price
 
     decision = parseInt(prompt('Desea continuar comprando? 1 - Si . 2 - En otro momento'))
     if (decision === 1) {
