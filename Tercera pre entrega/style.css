@@ -1,0 +1,14 @@
+.cardProducto{
+    width: 150px;
+    margin: 20px;
+    background-color: coral;
+    font-style: oblique;
+    justify-content: center;
+
+}
+
+.boton{
+margin: 15px;
+background-color: yellow;
+font-style: oblique;
+}
