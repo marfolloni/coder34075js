@@ -66,6 +66,13 @@ botonesComprar.forEach(boton=>{
         }
         /* console.log(producto) */
         console.log(carrito)
+
     }
 
 })
+
+const botonFinalizar = document.querySelector(`#finalizar`)
+botonFinalizar.onclick = () => {
+    const totalCompra = carrito.map(prod=>prod.price*prod.cantidad).reduce((elem1,elem2)=>elem1+elem2)
+    alert(`El valor total de tu compra es de $${totalCompra}`)
+}
