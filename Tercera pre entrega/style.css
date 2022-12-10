@@ -9,7 +9,7 @@ h2{
 .cardProducto{
     width: 150px;
     margin: 20px;
-    background-color: coral;
+    background-color: gray;
     font-style: oblique;
     justify-content: center;
 
@@ -20,3 +20,72 @@ margin: 15px;
 background-color: rgb(99, 238, 18);
 font-style: oblique;
 }
+
+h1 {
+    font-family: "Indie Flower", cursive;
+    color: #080883;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 30px; }
+    h1::selection {
+    background-color: #029c0a;
+    color: aliceblue; }
+
+h2 {
+    font-family: "Indie Flower", cursive;
+    color: #080883;
+    margin: 16px; }
+    h2::selection {
+    background-color: #029c0a;
+    color: aliceblue; }
+
+body {
+  background-color:#029c0a;
+}
+    
+
+.main__principal {
+    display: grid;
+    height: 100vh;
+    background-image: url(../resources/toshiba.jpg);
+    background-size: cover;
+    background-position: center;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr; }
+
+.main__titulo {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    color: #c4f597;
+    text-shadow: 10px 10px 50px greenyellow;
+    font-size: 50px;
+    align-items: flex-end; }
+
+footer {
+    display: grid;
+    grid-template-areas: "indice mapa redes" "indice mapa derechos";
+    background-color: #029c0a;
+    padding: 24px; }
+    footer .footer__indice {
+      grid-area: indice;
+      font-weight: bold; }
+    footer .footer__indice li:hover {
+      transform: scale(1.05, 1.2);
+      background-color: #b8fa04;
+      border-radius: 5px;
+      transition: 0.5s; }
+    footer .footer__mapa {
+      grid-area: mapa; }
+    footer .footer__redes {
+      grid-area: redes;
+      align-items: flex-end; }
+    footer .footer__derechos {
+      grid-area: derechos;
+      align-items: flex-start; }
+    footer .footer__indice ul li {
+      font-size: 16px;
+      margin: 20px; }
+    footer .footer__iconos {
+      width: 30px;
+      height: 30px;
+      margin: 20px; }
