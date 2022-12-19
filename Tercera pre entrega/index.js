@@ -5,6 +5,8 @@ const divInicial = document.getElementById("divInicial");
 const divSaludar = document.getElementById("divSaludar");
 const divConfirmar = document.getElementById("divConfirmar");
 const divCards = document.querySelector(".cards");
+const lista = document.querySelector("#lista");
+const botonFiltrar = document.querySelector("#filtar");
 
 botonIngresar.onclick = () => {
     if (inputNombre.value || inputApellido.value) {
@@ -12,17 +14,34 @@ botonIngresar.onclick = () => {
         nombre: inputNombre.value,
         apellido: inputApellido.value,
         };
-    /* console.log(usuario) */
-    /* inputNombre.value = ""; */
-    /* inputApellido.value = ""; */
+
     localStorage.setItem("infoUsuario", JSON.stringify(usuario));
     divInicial.remove();
 
     const saludarTitulo = document.createElement("h2");
-    saludarTitulo.innerText = `Hola ${usuario.nombre}. Selecciona tus productos que deseas comprar`
+    saludarTitulo.innerText = `Hola ${usuario.nombre} ${usuario.apellido}. Como estas? Selecciona tus productos que deseas comprar`
     divSaludar.append(saludarTitulo);
     }
 };
+
+const mostrarCategorias = async () => {
+
+  const categoriasFetch = await fetch(
+  "categorias.json"
+)
+const categoriasJson = await categoriasFetch.json()
+  categoriasJson.forEach((cat) => {
+  const option = document.createElement('option')
+  option.innerText = `${cat}`
+  lista.append(option)
+})
+}
+
+/* const buscarProductosPorCategoria = async () => {-
+}
+
+mostrarCategorias()
+botonFiltrar.onclick = buscarProductosPorCategoria */
 
 const productos = []
 class Producto{
@@ -34,17 +53,26 @@ class Producto{
         this.image = image;
     }
 }
-const producto1 = new Producto(1,"Apple",3000,"I5",'https://images.unsplash.com/photo-1629131726692-1accd0c53ce0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
-const producto2 = new Producto(2,"HP",1500,"I5",'https://images.unsplash.com/photo-1629131726692-1accd0c53ce0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
-const producto3 = new Producto(3,"Samsung",2000,"I5",'https://images.unsplash.com/photo-1522205955123-895f7c4e5057?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGxhcHRvcCUyMHNhbXN1bmd8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60');
-const producto4 = new Producto(4,"Toshiba",2500,"Intel I7",'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1415&q=80');
-const producto5 = new Producto(5,"Acer",1700,"I5",'https://images.unsplash.com/photo-1629131726692-1accd0c53ce0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
-const producto6 = new Producto(6,"Dell",3500,"I5",'https://images.unsplash.com/photo-1629131726692-1accd0c53ce0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'); 
-const producto7 = new Producto(7,"Sony",4000,"I5",'https://images.unsplash.com/photo-1629131726692-1accd0c53ce0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
-const producto8 = new Producto(8,"LG",2150,"I5",'https://images.unsplash.com/photo-1629131726692-1accd0c53ce0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
-const producto9 = new Producto(9,"Xaomi",2500,"I5",'https://images.unsplash.com/photo-1629131726692-1accd0c53ce0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
-const producto10 = new Producto(10,"Motorola",2500,"I5",'https://images.unsplash.com/photo-1629131726692-1accd0c53ce0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
-
+const producto1 = new Producto(1,"Apple",3000,"I5 1TR",'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwYXBwbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60');
+productos.push(producto1);
+const producto2 = new Producto(2,"HP",1500,"I7 2TR",'https://images.unsplash.com/photo-1622050756792-5b1180bbb873?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjh8fGxhcHRvcCUyMGhwfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60');
+productos.push(producto2);
+const producto3 = new Producto(3,"Samsung",2000,"I5 1TR",'https://images.unsplash.com/photo-1522202222206-b75023c48f4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGxhcHRvcCUyMHNhbXN1bmd8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60');
+productos.push(producto3);
+const producto4 = new Producto(4,"Toshiba",2500,"Intel I7 2 TR",'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1415&q=80');
+productos.push(producto4);
+const producto5 = new Producto(5,"Acer",1700,"I3 1TR",'https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjZ8fGxhcHRvcCUyMGhwfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60');
+productos.push(producto5);
+const producto6 = new Producto(6,"Dell",3500,"I10 2TR",'https://images.unsplash.com/photo-1661961112951-f2bfd1f253ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxzZWFyY2h8MjJ8fGxhcHRvcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'); 
+productos.push(producto6);
+const producto7 = new Producto(7,"Sony",4000,"I7 5TR",'https://images.unsplash.com/photo-1529539795054-3c162aab037a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzd8fGxhcHRvcCUyMHNhbXN1bmd8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60');
+productos.push(producto7);
+const producto8 = new Producto(8,"LG",2150,"I5 1TR",'https://images.unsplash.com/photo-1661961110218-35af7210f803?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxzZWFyY2h8NDl8fGxhcHRvcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60');
+productos.push(producto8);
+const producto9 = new Producto(9,"Xaomi",2500,"I7 2TR",'https://images.unsplash.com/photo-1504707748692-419802cf939d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fGxhcHRvcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60');
+productos.push(producto9);
+const producto10 = new Producto(10,"Motorola",2500,"I5 1TR",'https://images.unsplash.com/photo-1603302576837-37561b2e2302?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGxhcHRvcCUyMGhwfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60');
+productos.push(producto10);
 console.log(JSON.stringify(productos));
 
 const productosArray = [
